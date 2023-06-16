@@ -42,4 +42,10 @@ public class UserResource {
         URI uri = Helpers.getURI("/{id}", newUser.getId());
         return ResponseEntity.created(uri).build();
     }
+
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        _userService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
  }

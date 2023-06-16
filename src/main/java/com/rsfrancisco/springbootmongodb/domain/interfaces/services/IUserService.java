@@ -15,7 +15,7 @@ public interface IUserService {
 
     /**
      * Obter um usuario pelo seu identificador (id)
-     * @param userId
+     * @param userId identificador (id) do usuario
      * @return um objeto do tipo usuario
      */
     User findById(String userId);
@@ -26,4 +26,10 @@ public interface IUserService {
      * @return um objeto do tipo usuario
      */
     User insert(User user);
+
+    /**
+     * Remover um usuario pelo seu identificador (id)
+     * @param userId identificador (id) do usuario
+     */
+    void delete(String userId);
 }

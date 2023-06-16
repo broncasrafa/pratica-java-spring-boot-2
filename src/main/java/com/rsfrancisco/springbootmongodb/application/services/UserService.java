@@ -32,4 +32,10 @@ public class UserService implements IUserService {
     public User insert(User user) {
         return _userRepository.insert(user);
     }
+
+    @Override
+    public void delete(String userId) {
+        findById(userId);
+        _userRepository.deleteById(userId);
+    }
 }
