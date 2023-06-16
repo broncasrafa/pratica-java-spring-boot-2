@@ -12,4 +12,11 @@ public interface IUserService {
      * @return uma coleção de usuarios
      */
     List<User> findAll();
+
+    /**
+     * Obter um usuario pelo seu identificador (id)
+     * @param userId
+     * @return um objeto do tipo usuario
+     */
+    User findById(String userId);
 }

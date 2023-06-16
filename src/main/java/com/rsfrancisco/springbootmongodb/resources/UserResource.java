@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,4 +29,13 @@ public class UserResource {
         List<UserDTO> result = users.stream().map(c -> new UserDTO(c)).toList();
         return ResponseEntity.ok().body(result);
     }
-}
+
+    @GetMapping(value="/{id}")
+    //@RequestMapping(value="/{id}", method = RequestMethod.GET)
+    public ResponseEntity<UserDTO> findById(@PathVariable String id) {
+        User user = _userService.findById(id);
+        UserDTO result = new UserDTO(user);
+        //ApiResponse<UserDTO> result = new ApiResponse<UserDTO>(new UserDTO(user));
+        return ResponseEntity.ok().body(result);
+    }
+ }
