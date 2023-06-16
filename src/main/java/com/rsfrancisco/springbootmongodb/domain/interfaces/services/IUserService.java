@@ -32,4 +32,11 @@ public interface IUserService {
      * @param userId identificador (id) do usuario
      */
     void delete(String userId);
+
+    /**
+     * Atualizar os dados do usuario
+     * @param user objeto do tipo usuario
+     * @return um objeto atualizado do tipo usuario
+     */
+    User update(User user);
 }

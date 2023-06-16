@@ -34,6 +34,15 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User update(User user) {
+        User newUser = findById(user.getId());
+        newUser.setName(user.getName());
+        newUser.setEmail(user.getEmail());
+        _userRepository.save(newUser);
+        return newUser;
+    }
+
+    @Override
     public void delete(String userId) {
         findById(userId);
         _userRepository.deleteById(userId);
