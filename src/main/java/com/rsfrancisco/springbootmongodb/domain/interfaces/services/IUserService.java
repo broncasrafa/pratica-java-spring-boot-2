@@ -19,4 +19,11 @@ public interface IUserService {
      * @return um objeto do tipo usuario
      */
     User findById(String userId);
+
+    /**
+     * Inserir um novo usuario
+     * @param user objeto do tipo usuario
+     * @return um objeto do tipo usuario
+     */
+    User insert(User user);
 }

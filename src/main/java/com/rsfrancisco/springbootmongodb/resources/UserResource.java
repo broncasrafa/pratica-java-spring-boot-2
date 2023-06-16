@@ -1,19 +1,15 @@
 package com.rsfrancisco.springbootmongodb.resources;
 
 import com.rsfrancisco.springbootmongodb.application.dto.UserDTO;
+import com.rsfrancisco.springbootmongodb.domain.Utils.Helpers;
 import com.rsfrancisco.springbootmongodb.domain.entities.User;
 import com.rsfrancisco.springbootmongodb.domain.interfaces.services.IUserService;
-import com.rsfrancisco.springbootmongodb.resources.models.response.ApiResponse;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value="/api/v1/users")
@@ -37,5 +33,13 @@ public class UserResource {
         UserDTO result = new UserDTO(user);
         //ApiResponse<UserDTO> result = new ApiResponse<UserDTO>(new UserDTO(user));
         return ResponseEntity.ok().body(result);
+    }
+
+    @PostMapping
+    public ResponseEntity<User> create(@RequestBody UserDTO dto) {
+        User newUser = UserDTO.map(dto);
+        newUser = _userService.insert(newUser);
+        URI uri = Helpers.getURI("/{id}", newUser.getId());
+        return ResponseEntity.created(uri).build();
     }
  }

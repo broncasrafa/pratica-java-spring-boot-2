@@ -27,4 +27,9 @@ public class UserService implements IUserService {
         Optional<User> obj = _userRepository.findById(userId);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found"));
     }
+
+    @Override
+    public User insert(User user) {
+        return _userRepository.insert(user);
+    }
 }

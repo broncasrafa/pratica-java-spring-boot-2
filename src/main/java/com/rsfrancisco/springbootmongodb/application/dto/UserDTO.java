@@ -39,4 +39,8 @@ public class UserDTO  implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public static User map(UserDTO dto) {
+        return new User(dto.getId(), dto.getName(), dto.getEmail());
+    }
 }

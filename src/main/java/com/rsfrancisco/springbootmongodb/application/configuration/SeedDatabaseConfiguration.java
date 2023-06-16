@@ -16,13 +16,13 @@ public class SeedDatabaseConfiguration implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        _userRepository.deleteAll();
+        //_userRepository.deleteAll();
         User u1 = new User("Monica Mattos", "monica.mattos@test.com");
         User u2 = new User("Rugal Bernstein", "rugal.bernstein@test.com");
         User u3 = new User("Victoria Medeiros", "victoria.medeiros@test.com");
         User u4 = new User("Kesha Linn", "kesha_nyon_@test.com");
         User u5 = new User("Cibelly Ferreira", "cibellyferreiraprofessora_@test.com");
         User u6 = new User("Jennifer Lawrence", "jennifer_lawrence@test.com");
-        _userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6));
+        //_userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6));
     }
 }
