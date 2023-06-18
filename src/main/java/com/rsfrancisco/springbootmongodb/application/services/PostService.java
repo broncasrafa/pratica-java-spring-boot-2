@@ -1,6 +1,8 @@
 package com.rsfrancisco.springbootmongodb.application.services;
 
+import com.rsfrancisco.springbootmongodb.application.dto.CommentDTO;
 import com.rsfrancisco.springbootmongodb.application.exceptions.ObjectNotFoundException;
+import com.rsfrancisco.springbootmongodb.domain.entities.Comment;
 import com.rsfrancisco.springbootmongodb.domain.entities.Post;
 import com.rsfrancisco.springbootmongodb.domain.interfaces.repositories.IPostRepository;
 import com.rsfrancisco.springbootmongodb.domain.interfaces.services.IPostService;
@@ -19,5 +21,13 @@ public class PostService implements IPostService {
     public Post findById(String postId) {
         Optional<Post> obj = _postRepository.findById(postId);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found"));
+    }
+
+    @Override
+    public boolean insertCommentByPostId(String postId, CommentDTO comment) {
+        Post post = findById(postId);
+        post.getComments().add(comment);
+        _postRepository.save(post);
+        return true;
     }
 }
