@@ -23,11 +23,4 @@ public class Helpers {
         return datetime;
     }
 
-    public static String decodeParam(String text) {
-        try {
-            return URLDecoder.decode(text, "UTF-8");
-        } catch (UnsupportedEncodingException ex) {
-            return "";
-        }
-    }
 }

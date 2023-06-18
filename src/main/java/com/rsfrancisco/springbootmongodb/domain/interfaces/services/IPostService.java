@@ -5,6 +5,7 @@ import com.rsfrancisco.springbootmongodb.domain.entities.Comment;
 import com.rsfrancisco.springbootmongodb.domain.entities.Post;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,6 +26,8 @@ public interface IPostService {
     List<Post> findByTitle(String term);
 
     List<Post> searchByTitle(String term);
+
+    List<Post> findByAnyTextAndDate(String text, Date minDate, Date maxDate);
 
     /**
      * Inserir um comentario no post especificado pelo seu identificador (id)

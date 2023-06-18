@@ -9,6 +9,7 @@ import com.rsfrancisco.springbootmongodb.domain.interfaces.services.IPostService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,13 @@ public class PostService implements IPostService {
     @Override
     public List<Post> searchByTitle(String term) {
         List<Post> posts = _postRepository.findByTitle(term);
+        return posts;
+    }
+
+    @Override
+    public List<Post> findByAnyTextAndDate(String text, Date minDate, Date maxDate) {
+        maxDate = new Date(maxDate.getTime() + 24 * 60 * 60 * 1000);
+        List<Post> posts = _postRepository.findByAnyTextAndDate(text, minDate, maxDate);
         return posts;
     }
 
