@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.List;
 
 public class CommentDTO implements Serializable {
 
@@ -23,6 +24,13 @@ public class CommentDTO implements Serializable {
         this.id = ObjectId.get().toString();
         this.text = text;
         this.createdAt = Helpers.getDateTimeNow();
+        this.author = author;
+    }
+
+    public CommentDTO(String id, String text, Instant createdAt, AuthorDTO author) {
+        this.id = id;
+        this.text = text;
+        this.createdAt = createdAt;
         this.author = author;
     }
 
@@ -54,7 +62,17 @@ public class CommentDTO implements Serializable {
         this.author = author;
     }
 
+
+
     public static Comment map(CommentDTO dto) {
-        return new Comment(dto.getId(), dto.getText(), dto.getAuthor());
+        return new Comment(dto.getId(), dto.getText(), AuthorDTO.map(dto.getAuthor()));
+    }
+    public static CommentDTO map(Comment comment) {
+        return new CommentDTO(comment.getId(), comment.getText(), comment.getCreatedAt(), AuthorDTO.map(comment.getAuthor()));
+    }
+    public static List<CommentDTO> map(List<Comment> comments) {
+        return comments.stream()
+                .map(c -> map(c))
+                .toList();
     }
 }

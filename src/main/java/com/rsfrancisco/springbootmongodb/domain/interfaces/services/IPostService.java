@@ -35,7 +35,5 @@ public interface IPostService {
      * @param comment objeto do tipo CommentDTO
      * @return true para sucesso
      */
-    boolean insertCommentByPostId(String postId, CommentDTO comment);
-
-
+    boolean insertCommentByPostId(String postId, Comment comment);
 }

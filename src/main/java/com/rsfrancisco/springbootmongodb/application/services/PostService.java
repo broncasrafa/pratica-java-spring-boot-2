@@ -45,7 +45,7 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public boolean insertCommentByPostId(String postId, CommentDTO comment) {
+    public boolean insertCommentByPostId(String postId, Comment comment) {
         Post post = findById(postId);
         post.getComments().add(comment);
         _postRepository.save(post);

@@ -11,13 +11,13 @@ public class Comment implements Serializable {
     private String id;
     private String text;
     private Instant createdAt;
-    private AuthorDTO author;
+    private Author author;
 
     public Comment() {
         this.createdAt = Helpers.getDateTimeNow();
     }
 
-    public Comment(String id, String text, AuthorDTO author) {
+    public Comment(String id, String text, Author author) {
         this.id = id;
         this.text = text;
         this.createdAt = Helpers.getDateTimeNow();
@@ -45,10 +45,10 @@ public class Comment implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public AuthorDTO getAuthor() {
+    public Author getAuthor() {
         return author;
     }
-    public void setAuthor(AuthorDTO author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 }

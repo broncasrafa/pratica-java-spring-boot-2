@@ -70,12 +70,12 @@ public class PostDTO {
 
 
     public static Post map(PostDTO dto) {
-        return new Post(dto.getTitle(), dto.getBody(), dto.getAuthor());
+        return new Post(dto.getTitle(), dto.getBody(), AuthorDTO.map(dto.getAuthor()));
     }
 
     public static PostDTO map(Post post) {
-        PostDTO dto = new PostDTO(post.getId(), post.getCreatedAt(), post.getTitle(), post.getBody(), post.getAuthor());
-        dto.setComments(post.getComments());
+        PostDTO dto = new PostDTO(post.getId(), post.getCreatedAt(), post.getTitle(), post.getBody(), AuthorDTO.map(post.getAuthor()));
+        dto.setComments(CommentDTO.map(post.getComments()));
         return dto;
     }
     public static List<PostDTO> map(List<Post> posts) {

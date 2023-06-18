@@ -21,10 +21,8 @@ public class Post implements Serializable {
     private Instant createdAt;
     private String title;
     private String body;
-    private AuthorDTO author;
-
-
-    private List<CommentDTO> comments = new ArrayList<>();
+    private Author author;
+    private List<Comment> comments = new ArrayList<>();
 
 
 
@@ -32,7 +30,7 @@ public class Post implements Serializable {
         this.createdAt = Helpers.getDateTimeNow();
     }
 
-    public Post(String id, String title, String body, AuthorDTO author) {
+    public Post(String id, String title, String body, Author author) {
         this.id = id;
         this.createdAt = Helpers.getDateTimeNow();
         this.title = title;
@@ -40,7 +38,7 @@ public class Post implements Serializable {
         this.author = author;
     }
 
-    public Post(String title, String body, AuthorDTO author) {
+    public Post(String title, String body, Author author) {
         this.createdAt = Helpers.getDateTimeNow();
         this.title = title;
         this.body = body;
@@ -76,17 +74,17 @@ public class Post implements Serializable {
         this.body = body;
     }
 
-    public AuthorDTO getAuthor() {
+    public Author getAuthor() {
         return author;
     }
-    public void setAuthor(AuthorDTO author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
-    public List<CommentDTO> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
-    public void setComments(List<CommentDTO> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 

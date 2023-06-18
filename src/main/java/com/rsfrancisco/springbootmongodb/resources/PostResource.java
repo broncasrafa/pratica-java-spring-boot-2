@@ -32,7 +32,7 @@ public class PostResource {
     @PostMapping(value="/{id}/comments")
     public ResponseEntity<ApiResponse<Boolean>> postComment(@PathVariable String id, @RequestBody CommentDTO dto) {
         Comment comment = CommentDTO.map(dto);
-        boolean result = _postService.insertCommentByPostId(id, dto);
+        boolean result = _postService.insertCommentByPostId(id, comment);
         return ResponseEntity.ok().body(ApiResponse.success(result));
     }
 
