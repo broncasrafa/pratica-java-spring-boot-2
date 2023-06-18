@@ -36,7 +36,8 @@ public class PostResource {
 
     @GetMapping(value="/search")
     public ResponseEntity<ApiResponse<List<PostDTO>>> findByTitle(@RequestParam(value="title", defaultValue = "") String title) {
-        List<Post> posts = _postService.findByTitle(Helpers.decodeParam(title));
+//        List<Post> posts = _postService.findByTitle(Helpers.decodeParam(title));
+        List<Post> posts = _postService.searchByTitle(Helpers.decodeParam(title));
         List<PostDTO> result = PostDTO.map(posts);
         return ResponseEntity.ok().body(ApiResponse.success(result));
     }

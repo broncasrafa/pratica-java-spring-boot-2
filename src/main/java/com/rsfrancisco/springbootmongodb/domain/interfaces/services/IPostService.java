@@ -24,6 +24,8 @@ public interface IPostService {
      */
     List<Post> findByTitle(String term);
 
+    List<Post> searchByTitle(String term);
+
     /**
      * Inserir um comentario no post especificado pelo seu identificador (id)
      * @param postId identificador (id) do post

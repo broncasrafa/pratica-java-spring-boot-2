@@ -31,6 +31,12 @@ public class PostService implements IPostService {
     }
 
     @Override
+    public List<Post> searchByTitle(String term) {
+        List<Post> posts = _postRepository.findByTitle(term);
+        return posts;
+    }
+
+    @Override
     public boolean insertCommentByPostId(String postId, CommentDTO comment) {
         Post post = findById(postId);
         post.getComments().add(comment);
