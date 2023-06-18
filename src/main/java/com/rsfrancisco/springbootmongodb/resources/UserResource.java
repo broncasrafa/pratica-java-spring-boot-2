@@ -2,7 +2,7 @@ package com.rsfrancisco.springbootmongodb.resources;
 
 import com.rsfrancisco.springbootmongodb.application.dto.PostDTO;
 import com.rsfrancisco.springbootmongodb.application.dto.UserDTO;
-import com.rsfrancisco.springbootmongodb.domain.Utils.Helpers;
+import com.rsfrancisco.springbootmongodb.domain.utils.Helpers;
 import com.rsfrancisco.springbootmongodb.domain.entities.Post;
 import com.rsfrancisco.springbootmongodb.domain.entities.User;
 import com.rsfrancisco.springbootmongodb.domain.interfaces.services.IUserService;

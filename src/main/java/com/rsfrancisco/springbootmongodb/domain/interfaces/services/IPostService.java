@@ -5,6 +5,8 @@ import com.rsfrancisco.springbootmongodb.domain.entities.Comment;
 import com.rsfrancisco.springbootmongodb.domain.entities.Post;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface IPostService {
 
@@ -15,6 +17,12 @@ public interface IPostService {
      */
     Post findById(String postId);
 
+    /**
+     * Obter os posts cujo o titulo CONTENHA o termo especificado
+     * @param term criterio de pesquisa nos posts
+     * @return lista de post que contenha o criterio de pesquisa
+     */
+    List<Post> findByTitle(String term);
 
     /**
      * Inserir um comentario no post especificado pelo seu identificador (id)
@@ -23,4 +31,6 @@ public interface IPostService {
      * @return true para sucesso
      */
     boolean insertCommentByPostId(String postId, CommentDTO comment);
+
+
 }

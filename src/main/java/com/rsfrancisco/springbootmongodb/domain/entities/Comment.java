@@ -1,7 +1,7 @@
 package com.rsfrancisco.springbootmongodb.domain.entities;
 
 import com.rsfrancisco.springbootmongodb.application.dto.AuthorDTO;
-import com.rsfrancisco.springbootmongodb.domain.Utils.Helpers;
+import com.rsfrancisco.springbootmongodb.domain.utils.Helpers;
 
 import java.io.Serializable;
 import java.time.Instant;

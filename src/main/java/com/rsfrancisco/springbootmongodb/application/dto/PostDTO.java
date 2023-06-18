@@ -4,6 +4,7 @@ import com.rsfrancisco.springbootmongodb.domain.entities.Post;
 import com.rsfrancisco.springbootmongodb.domain.entities.User;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostDTO {
@@ -12,6 +13,10 @@ public class PostDTO {
     private String title;
     private String body;
     private AuthorDTO author;
+
+    private List<CommentDTO> comments = new ArrayList<>();
+
+
 
     public PostDTO(String id, Instant createdAt, String title, String body, AuthorDTO author) {
         this.id = id;
@@ -56,12 +61,22 @@ public class PostDTO {
         this.author = author;
     }
 
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
+    }
+
+
     public static Post map(PostDTO dto) {
         return new Post(dto.getTitle(), dto.getBody(), dto.getAuthor());
     }
 
     public static PostDTO map(Post post) {
-        return new PostDTO(post.getId(), post.getCreatedAt(), post.getTitle(), post.getBody(), post.getAuthor());
+        PostDTO dto = new PostDTO(post.getId(), post.getCreatedAt(), post.getTitle(), post.getBody(), post.getAuthor());
+        dto.setComments(post.getComments());
+        return dto;
     }
     public static List<PostDTO> map(List<Post> posts) {
         return posts

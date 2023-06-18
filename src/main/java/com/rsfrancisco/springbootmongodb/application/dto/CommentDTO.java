@@ -1,6 +1,6 @@
 package com.rsfrancisco.springbootmongodb.application.dto;
 
-import com.rsfrancisco.springbootmongodb.domain.Utils.Helpers;
+import com.rsfrancisco.springbootmongodb.domain.utils.Helpers;
 import com.rsfrancisco.springbootmongodb.domain.entities.Comment;
 import org.bson.types.ObjectId;
 

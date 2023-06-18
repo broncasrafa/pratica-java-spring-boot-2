@@ -2,9 +2,8 @@ package com.rsfrancisco.springbootmongodb.domain.entities;
 
 import com.rsfrancisco.springbootmongodb.application.dto.AuthorDTO;
 import com.rsfrancisco.springbootmongodb.application.dto.CommentDTO;
-import com.rsfrancisco.springbootmongodb.domain.Utils.Helpers;
+import com.rsfrancisco.springbootmongodb.domain.utils.Helpers;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
