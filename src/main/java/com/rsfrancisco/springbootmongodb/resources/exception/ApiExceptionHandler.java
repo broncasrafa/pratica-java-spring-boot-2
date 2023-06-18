@@ -1,7 +1,7 @@
 package com.rsfrancisco.springbootmongodb.resources.exception;
 
 import com.rsfrancisco.springbootmongodb.application.exceptions.ObjectNotFoundException;
-import com.rsfrancisco.springbootmongodb.resources.models.response.ApiResponse;
+import com.rsfrancisco.springbootmongodb.resources.models.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

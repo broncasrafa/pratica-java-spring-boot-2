@@ -2,7 +2,9 @@ package com.rsfrancisco.springbootmongodb.application.services;
 
 
 import com.rsfrancisco.springbootmongodb.application.exceptions.ObjectNotFoundException;
+import com.rsfrancisco.springbootmongodb.domain.entities.Post;
 import com.rsfrancisco.springbootmongodb.domain.entities.User;
+import com.rsfrancisco.springbootmongodb.domain.interfaces.repositories.IPostRepository;
 import com.rsfrancisco.springbootmongodb.domain.interfaces.repositories.IUserRepository;
 import com.rsfrancisco.springbootmongodb.domain.interfaces.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,8 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     private IUserRepository _userRepository;
-
+    @Autowired
+    private IPostRepository _postRepository;
 
     @Override
     public List<User> findAll() {
@@ -46,5 +49,21 @@ public class UserService implements IUserService {
     public void delete(String userId) {
         findById(userId);
         _userRepository.deleteById(userId);
+    }
+
+    @Override
+    public List<Post> getUserPosts(String userId) {
+        User user = findById(userId);
+        return user.getPosts();
+    }
+
+    @Override
+    public boolean insertPost(String userId, Post post) {
+        _postRepository.insert(post);
+
+        User user = findById(userId);
+        user.getPosts().add(post);
+        _userRepository.save(user);
+        return true;
     }
 }

@@ -1,32 +1,46 @@
 package com.rsfrancisco.springbootmongodb.domain.entities;
 
-
+import com.rsfrancisco.springbootmongodb.application.dto.AuthorDTO;
+import com.rsfrancisco.springbootmongodb.domain.Utils.Helpers;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 import java.util.Objects;
 
-@Document
+@Document(collection = "posts")
 public class Post implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     private String id;
-    private Date date;
+    private Instant createdAt;
     private String title;
     private String body;
+    private AuthorDTO author;
+
 
 
     public Post() {
+        this.createdAt = Helpers.getDateTimeNow();
     }
 
-    public Post(String id, Date date, String title, String body) {
+    public Post(String id, String title, String body, AuthorDTO author) {
         this.id = id;
-        this.date = date;
+        this.createdAt = Helpers.getDateTimeNow();
         this.title = title;
         this.body = body;
+        this.author = author;
     }
+
+    public Post(String title, String body, AuthorDTO author) {
+        this.createdAt = Helpers.getDateTimeNow();
+        this.title = title;
+        this.body = body;
+        this.author = author;
+    }
+
 
     public String getId() {
         return id;
@@ -35,11 +49,11 @@ public class Post implements Serializable {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public Instant getCreatedAt() {
+        return createdAt;
     }
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getTitle() {
@@ -55,6 +69,15 @@ public class Post implements Serializable {
     public void setBody(String body) {
         this.body = body;
     }
+
+    public AuthorDTO getAuthor() {
+        return author;
+    }
+    public void setAuthor(AuthorDTO author) {
+        this.author = author;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {

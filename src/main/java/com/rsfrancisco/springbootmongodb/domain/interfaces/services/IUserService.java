@@ -1,5 +1,6 @@
 package com.rsfrancisco.springbootmongodb.domain.interfaces.services;
 
+import com.rsfrancisco.springbootmongodb.domain.entities.Post;
 import com.rsfrancisco.springbootmongodb.domain.entities.User;
 import org.springframework.stereotype.Service;
 
@@ -39,4 +40,18 @@ public interface IUserService {
      * @return um objeto atualizado do tipo usuario
      */
     User update(User user);
+
+    /**
+     * Obter a lista de posts do usuario pelo seu identificador (id)
+     * @param userId identificador (id) do usuario
+     */
+    List<Post> getUserPosts(String userId);
+
+    /**
+     * Inserir um post para o usuario especificado pelo seu identificador (id)
+     * @param userId identificador (id) do usuario
+     * @param post objeto do tipo Post
+     * @return true para sucesso
+     */
+    boolean insertPost(String userId, Post post);
 }

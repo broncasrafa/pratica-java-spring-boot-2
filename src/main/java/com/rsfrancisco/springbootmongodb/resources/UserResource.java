@@ -1,12 +1,14 @@
 package com.rsfrancisco.springbootmongodb.resources;
 
+import com.rsfrancisco.springbootmongodb.application.dto.PostDTO;
 import com.rsfrancisco.springbootmongodb.application.dto.UserDTO;
 import com.rsfrancisco.springbootmongodb.domain.Utils.Helpers;
+import com.rsfrancisco.springbootmongodb.domain.entities.Post;
 import com.rsfrancisco.springbootmongodb.domain.entities.User;
 import com.rsfrancisco.springbootmongodb.domain.interfaces.services.IUserService;
-import com.rsfrancisco.springbootmongodb.resources.models.response.ApiResponse;
+import com.rsfrancisco.springbootmongodb.resources.models.ApiResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,4 +57,22 @@ public class UserResource {
         _userService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping(value = "/{id}/posts")
+    public ResponseEntity<ApiResponse<List<PostDTO>>> findUserPostsById(@PathVariable String id) {
+        List<Post> posts = _userService.getUserPosts(id);
+        List<PostDTO> result = PostDTO.map(posts);
+        return ResponseEntity.ok().body(ApiResponse.success(result));
+    }
+
+    @PostMapping(value="/{id}/posts")
+    public ResponseEntity<Boolean> createUserPost(@PathVariable String id, @RequestBody PostDTO obj) {
+        Post post = PostDTO.map(obj);
+        boolean result = _userService.insertPost(id, post);
+        URI uri = Helpers.getURI("/{id}", id);
+        return ResponseEntity.created(uri).build();
+    }
+
 }
+/*
+*/
